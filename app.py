@@ -150,12 +150,15 @@ def update_student_record(row_number: int, new_status: str, new_notes: str):
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
     html, body, [class*="css"] {
         direction: rtl;
-        font-family: 'Tajawal', sans-serif;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 600;
         text-align: right;
+        font-size: 17px;
+
     }
 
     .main-header {
@@ -403,3 +406,15 @@ with tab2:
                 file_name=f"طلاب_{datetime.now().strftime('%Y%m%d_%H%M')}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             )
+          
+# ============================================================
+# 8) الفوتر (يظهر أسفل الصفحة في كل التبويبات)
+# ============================================================
+st.markdown(
+    f"""
+    <div class="app-footer">
+        جميع الحقوق محفوظة © {datetime.now().year} كلية التمريض - جامعة الإسكندرية
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
