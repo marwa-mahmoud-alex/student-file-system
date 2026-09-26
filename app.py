@@ -406,8 +406,8 @@ with tab2:
 
         st.markdown("### 📋 جدول جميع الطلاب")
         full_df = pd.DataFrame(records).drop(columns=["_row"], errors="ignore")
-        st.dataframe(full_df, use_container_width=True)
-
+        st.markdown(render_rtl_table(full_df), unsafe_allow_html=True)
+      
         col_csv, col_xlsx = st.columns(2)
         with col_csv:
             st.download_button(
