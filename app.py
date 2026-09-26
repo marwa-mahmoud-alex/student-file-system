@@ -10,6 +10,7 @@
 - تبويب الموظف: قراءة/كتابة عبر Google Sheets API (يحتاج حساب خدمة Service Account)
   حتى يمكن حفظ التعديلات فعلياً في الشيت (رابط CSV للقراءة فقط ولا يسمح بالكتابة).
 """
+
 import html
 import io
 from datetime import datetime
@@ -47,7 +48,6 @@ def extract_sheet_id(url: str):
         return url.split("/d/")[1].split("/")[0]
     except (IndexError, AttributeError):
         return None
-
 
 
 SHEET_ID = extract_sheet_id(GOOGLE_SHEET_URL)
@@ -152,13 +152,15 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
+html, body, [class*="css"], [class*="st-"], * {
+        font-family: 'Cairo', sans-serif !important;
+    }
+    
     html, body, [class*="css"] {
         direction: rtl;
-        font-family: 'Cairo', sans-serif;
         font-weight: 600;
         text-align: right;
         font-size: 17px;
-
     }
 
     .main-header {
@@ -172,13 +174,22 @@ st.markdown(
     }
     .main-header h1 { margin: 0; font-size: 1.9rem; font-weight: 700; }
     .main-header p { margin: 0.3rem 0 0; font-size: 1.05rem; opacity: 0.9; }
-
+    
+    div.stButton > button,
+    div.stFormSubmitButton > button,
+    div.stDownloadButton > button,
+    div.stButton > button *,
+    div.stFormSubmitButton > button *,
+    div.stDownloadButton > button * {
+        font-family: 'Cairo', sans-serif !important;
+    }
+    
     div.stButton > button, div.stFormSubmitButton > button {
         width: 100%;
         border-radius: 10px;
-        padding: 0.6rem 1rem;
-        font-weight: 700;
-        font-size: 1rem;
+        padding: 0.95rem 1.5rem;
+        font-weight: 700 !important;
+        font-size: 1.2rem !important;
         border: none;
         background: linear-gradient(135deg, #2563eb, #1d4ed8);
         color: white;
@@ -235,6 +246,15 @@ st.markdown(
     }
     .rtl-table tbody tr:hover {
         background: #eef2ff;
+    }
+    
+    .app-footer {
+        text-align: center;
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-top: 3rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid #e5e7eb;
     }
 
     </style>
@@ -410,11 +430,5 @@ with tab2:
 # ============================================================
 # 8) الفوتر (يظهر أسفل الصفحة في كل التبويبات)
 # ============================================================
-st.markdown(
-    f"""
-    <div class="app-footer">
-        جميع الحقوق محفوظة © {datetime.now().year} كلية التمريض - جامعة الإسكندرية
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown("---")
+st.markdown("<p style='text-align: center; color: gray;'>جميع الحقوق محفوظة © كلية التمريض -جامعة الاسكندرية</p>", unsafe_allow_html=True)
